@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>爱游戏 · 日常体育信息参考</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background: #fafbfc;
+            color: #1e2a2f;
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            line-height: 1.7;
+            padding: 0 1.5rem;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        .page-wrap {
+            max-width: 760px;
+            margin: 0 auto;
+            width: 100%;
+            flex: 1;
+        }
+        /* 顶部导航 — 极简无边框 */
+        .top-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.8rem 0 1.2rem;
+            border-bottom: 1px solid #e6eaed;
+        }
+        .top-nav .site-label {
+            font-size: 1.1rem;
+            font-weight: 500;
+            letter-spacing: 0.02em;
+            color: #1e2a2f;
+        }
+        .top-nav .site-label a {
+            color: inherit;
+            text-decoration: none;
+        }
+        .top-nav .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+        .top-nav .nav-links li a {
+            text-decoration: none;
+            color: #4b5a63;
+            font-size: 0.95rem;
+            transition: color 0.15s;
+        }
+        .top-nav .nav-links li a:hover {
+            color: #1e2a2f;
+        }
+        /* 窄正文区 */
+        .content {
+            padding: 2.8rem 0 3rem;
+        }
+        .hero-tag {
+            font-size: 0.85rem;
+            letter-spacing: 0.05em;
+            color: #7c8a93;
+            text-transform: uppercase;
+            margin-bottom: 0.6rem;
+        }
+        h1 {
+            font-size: 2.4rem;
+            font-weight: 500;
+            letter-spacing: -0.01em;
+            line-height: 1.2;
+            margin-bottom: 1.2rem;
+            color: #1e2a2f;
+        }
+        .intro-text {
+            font-size: 1.05rem;
+            color: #2c3b43;
+            margin-bottom: 2.4rem;
+            max-width: 600px;
+        }
+        .intro-text a {
+            color: #1e2a2f;
+            text-decoration: underline;
+            text-decoration-thickness: 1px;
+            text-underline-offset: 3px;
+        }
+        .intro-text a:hover {
+            text-decoration-thickness: 2px;
+        }
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 450;
+            margin: 2.8rem 0 0.8rem;
+            letter-spacing: -0.01em;
+            color: #1e2a2f;
+        }
+        .section-sub {
+            font-size: 0.95rem;
+            color: #546a74;
+            margin-bottom: 1.6rem;
+            border-left: 2px solid #d3dcdf;
+            padding-left: 1rem;
+        }
+        /* 三场景卡片 */
+        .scene-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+            margin: 1.6rem 0 1.2rem;
+        }
+        .scene-card {
+            background: white;
+            border-radius: 12px;
+            padding: 1.3rem 1.5rem;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02), 0 1px 2px rgba(0, 0, 0, 0.02);
+            border: 1px solid #eef1f4;
+            transition: box-shadow 0.2s;
+        }
+        .scene-card:hover {
+            box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+        }
+        .scene-card h3 {
+            font-size: 1.1rem;
+            font-weight: 500;
+            margin-bottom: 0.3rem;
+            color: #1e2a2f;
+        }
+        .scene-card .scene-meta {
+            font-size: 0.8rem;
+            color: #8a9ba5;
+            letter-spacing: 0.02em;
+            margin-bottom: 0.5rem;
+        }
+        .scene-card p {
+            font-size: 0.95rem;
+            color: #2f3f47;
+            margin-bottom: 0.2rem;
+        }
+        .scene-card .scene-note {
+            font-size: 0.85rem;
+            color: #5d737e;
+            margin-top: 0.4rem;
+            border-top: 1px solid #edf2f5;
+            padding-top: 0.4rem;
+        }
+        .faq-summary {
+            margin: 2.2rem 0 2.8rem;
+            border-top: 1px solid #e6eaed;
+            padding-top: 1.6rem;
+        }
+        .faq-item {
+            margin-bottom: 1rem;
+        }
+        .faq-item .q {
+            font-weight: 500;
+            margin-bottom: 0.15rem;
+            color: #1e2a2f;
+        }
+        .faq-item .a {
+            font-size: 0.95rem;
+            color: #3f535c;
+            padding-left: 0.5rem;
+            border-left: 2px solid #dee6e9;
+            padding-left: 0.9rem;
+        }
+        .closing-note {
+            font-size: 0.95rem;
+            color: #4f626d;
+            padding: 1.2rem 0 0.8rem;
+            border-top: 1px solid #e6eaed;
+            margin-top: 0.8rem;
+        }
+        .closing-note a {
+            color: #1e2a2f;
+            text-decoration: underline;
+            text-underline-offset: 2px;
+        }
+        footer {
+            border-top: 1px solid #edf1f4;
+            padding: 1.8rem 0 1.2rem;
+            font-size: 0.8rem;
+            color: #8599a3;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        footer a {
+            color: #4b5f69;
+            text-decoration: none;
+        }
+        footer a:hover {
+            text-decoration: underline;
+        }
+        @media (max-width: 520px) {
+            body {
+                padding: 0 1.2rem;
+            }
+            .top-nav {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.6rem;
+                padding: 1.2rem 0 0.8rem;
+            }
+            .top-nav .nav-links {
+                gap: 1.4rem;
+                flex-wrap: wrap;
+            }
+            h1 {
+                font-size: 1.9rem;
+            }
+            .scene-card {
+                padding: 1rem 1.2rem;
+            }
+            .content {
+                padding: 1.8rem 0 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="page-wrap">
+    <!-- 顶部导航 -->
+    <nav class="top-nav">
+        <span class="site-label"><a href="https://m-h5-aiyouxisports.com">爱游戏</a></span>
+        <ul class="nav-links">
+            <li><a href="#scenes">场景</a></li>
+            <li><a href="#faq">常见说明</a></li>
+            <li><a href="#ref">延伸</a></li>
+        </ul>
+    </nav>
+
+    <div class="content">
+        <!-- hero / 引言 -->
+        <div class="hero-tag">体育信息 · 日常参考</div>
+        <h1>从查询到对照<br>一种更安静的阅读方式</h1>
+        <div class="intro-text">
+            <p>在信息过载的日常里，很多人只是想在几分钟内查一条体育数据、对比一组赛程，或者安静地读一段运动相关的背景。正是这样的念头，让 <a href="https://m-h5-aiyouxisports.com">爱游戏</a> 逐渐变成身边一个不起眼却可靠的索引——它不制造喧哗，只提供朴素的体育信息陈列。</p>
+            <p style="margin-top: 0.8rem;">没有推送、没有弹窗，点开就是干净的列表和表格。适合那些只想快速得到答案，然后去做别的事的人。</p>
+        </div>
+
+        <!-- 三个场景模块 -->
+        <h2 class="section-title" id="scenes">日常里三个典型用法</h2>
+        <div class="section-sub">场景来自真实习惯，并非假设</div>
+
+        <div class="scene-grid">
+            <!-- 场景 1 -->
+            <div class="scene-card">
+                <h3>赛程对照 · 周末计划</h3>
+                <div class="scene-meta">以一周为单位的快速浏览</div>
+                <p>周五晚上打开页面，把未来三天的重点赛事扫一遍。不需要登录，也不需要注册。条目按时间排列，主客队、场地、时区都写在一行里，一眼看完。</p>
+                <div class="scene-note">很多用户习惯在周六早上再确认一遍时间，页面始终是最新版本。</div>
+            </div>
+            <!-- 场景 2 -->
+            <div class="scene-card">
+                <h3>队伍与球员 · 静态档案</h3>
+                <div class="scene-meta">当作小型百科来使用</div>
+                <p>某个球员最近转会了？上一赛季的数据是多少？在 <a href="https://m-h5-aiyouxisports.com" style="color:inherit; text-decoration:underline; text-underline-offset:2px;">爱游戏</a> 里可以找到按赛季整理的出场、进球、助攻等基础统计。没有长篇分析，只有数字和年份。</p>
+                <div class="scene-note">适合写稿、做表或者单纯满足好奇心，不掺杂主观评论。</div>
+            </div>
+            <!-- 场景 3 -->
+            <div class="scene-card">
+                <h3>延伸阅读 · 规则与背景</h3>
+                <div class="scene-meta">从术语到赛制，一段一段讲清楚</div>
+                <p>很多人不明白“越位”的具体判罚边界，或者想了解不同联赛的升降级规则。页面里有一组很短的文字说明，按主题划分，不跳转、不弹窗，慢慢往下翻就能读完。</p>
+                <div class="scene-note">这部分内容也在持续补充，最近新增了关于净胜球计算和加时赛规则的简注。</div>
+            </div>
+        </div>
+
+        <!-- 常见说明 (FAQ 摘要) -->
+        <div class="faq-summary" id="faq">
+            <h2 class="section-title" style="margin-top:0;">一些常见的说明</h2>
+            <div class="faq-item">
+                <div class="q">数据的更新频率是怎样的？</div>
+                <div class="a">赛程和数据通常在每个比赛日结束后两小时内刷新。部分历史统计每周同步一次，页面顶部标注了最后更新时间。</div>
+            </div>
+            <div class="faq-item">
+                <div class="q">是否需要注册或下载？</div>
+                <div class="a">不需要。所有内容在浏览器中直接阅读，没有会员系统，也不收集个人信息。</div>
+            </div>
+            <div class="faq-item">
+                <div class="q">移动端和桌面端体验有区别吗？</div>
+                <div class="a">布局会自适应，但核心内容一致。窄屏下表格会自动折行，依然可以完整阅读。</div>
+            </div>
+            <div class="faq-item">
+                <div class="q">页面里会添加广告或推广链接吗？</div>
+                <div class="a">目前没有计划。设计初衷就是一条简洁的信息通道，不会插入横幅或弹窗。</div>
+            </div>
+        </div>
+
+        <!-- 延伸阅读角度 -->
+        <h2 class="section-title" id="ref">从体育信息延伸</h2>
+        <div class="section-sub">不止于数据，还有观察的习惯</div>
+        <p style="font-size:0.98rem; color:#2f3f47; margin-bottom:0.4rem;">
+            把 <a href="https://m-h5-aiyouxisports.com" style="color:#1e2a2f; text-decoration:underline; text-underline-offset:2px;">爱游戏</a> 作为一个起点，你可以顺着赛程去了解一座城市的体育场历史，或者因为某条规则说明而翻出多年前的经典判例。页面里没有内嵌的社交分享按钮，但你可以随时复制地址发给朋友，就像递过去一张纸条。
+        </p>
+        <p style="font-size:0.95rem; color:#4c606a; margin-top:0.5rem;">
+            这种阅读方式不追求时长，不依赖算法。它尊重你的注意力——你看完，然后离开。
+        </p>
+
+        <div class="closing-note">
+            <span>如果你恰好也需要一个安静的体育信息索引，不妨试试 </span><a href="https://m-h5-aiyouxisports.com">爱游戏</a><span>。没有开场动画，没有欢迎语，打开就是内容本身。</span>
+        </div>
+    </div>
+
+    <!-- footer -->
+    <footer>
+        <span>爱游戏 · 体育信息参考</span>
+        <span><a href="https://m-h5-aiyouxisports.com">爱游戏</a></span>
+    </footer>
+</div>
+</body>
+</html>
