@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NG导航 · 不止于入口</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background-color: #f9f7f4;
+            color: #1f1f1f;
+            line-height: 1.7;
+        }
+
+        /* 深色头图 — 杂志封面感 */
+        .hero {
+            background: linear-gradient(135deg, #0d1b2a 0%, #1b2a41 40%, #243b55 100%);
+            color: #ede9dd;
+            padding: 5rem 1.5rem 3.5rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: #d4a373;
+            opacity: 0.5;
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            font-weight: 350;
+            letter-spacing: 0.04em;
+            margin-bottom: 0.5rem;
+        }
+
+        .hero h1 strong {
+            font-weight: 520;
+            color: #f4d6b0;
+        }
+
+        .hero .sub {
+            font-size: 1.1rem;
+            max-width: 540px;
+            margin: 0.75rem auto 1.2rem;
+            opacity: 0.8;
+            line-height: 1.6;
+        }
+
+        .hero .tagline {
+            font-size: 0.95rem;
+            letter-spacing: 0.3px;
+            opacity: 0.6;
+            border-top: 1px solid rgba(237, 233, 221, 0.2);
+            display: inline-block;
+            padding-top: 0.8rem;
+            margin-top: 1rem;
+        }
+
+        /* 浅色正文区 - 卡片式三段 */
+        .content-wrapper {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 3rem 1.5rem 2.5rem;
+        }
+
+        .intro-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 2.8rem;
+        }
+
+        .intro-card {
+            background: white;
+            border-radius: 28px;
+            padding: 2rem 2.2rem;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04), 0 2px 6px rgba(0, 0, 0, 0.02);
+            transition: box-shadow 0.2s;
+        }
+
+        .intro-card:hover {
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.07);
+        }
+
+        .intro-card h2 {
+            font-size: 1.5rem;
+            font-weight: 420;
+            color: #1b2a41;
+            margin-bottom: 1rem;
+            border-left: 4px solid #d4a373;
+            padding-left: 1rem;
+        }
+
+        .intro-card p {
+            margin-bottom: 1rem;
+            color: #2e2e2e;
+        }
+
+        .intro-card p:last-child {
+            margin-bottom: 0;
+        }
+
+        .emphasis-link {
+            color: #9c6644;
+            font-weight: 500;
+            text-decoration: underline;
+            text-underline-offset: 3px;
+            text-decoration-thickness: 1px;
+            text-decoration-color: #c7a17a;
+            transition: color 0.15s;
+        }
+
+        .emphasis-link:hover {
+            color: #5e3a26;
+            text-decoration-color: #5e3a26;
+        }
+
+        /* 特点场景微列表 */
+        .scene-list {
+            list-style: none;
+            padding: 0;
+            margin: 1.2rem 0 0.4rem;
+        }
+
+        .scene-list li {
+            padding: 0.4rem 0 0.4rem 1.8rem;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="%23d4a373" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>') left center no-repeat;
+            background-size: 1rem;
+            margin-bottom: 0.2rem;
+        }
+
+        .faq-snippet {
+            background: #f2efe9;
+            border-radius: 24px;
+            padding: 1.6rem 2rem;
+            margin-top: 0.8rem;
+        }
+
+        .faq-snippet p {
+            margin-bottom: 0.6rem;
+        }
+
+        .faq-snippet .q {
+            font-weight: 510;
+            color: #1b2a41;
+        }
+
+        .faq-snippet .a {
+            color: #3d3d3d;
+            margin-left: 0.2rem;
+        }
+
+        /* 页尾访问提示 */
+        .site-footer {
+            background: #e6dfd4;
+            padding: 2.2rem 1.5rem;
+            text-align: center;
+            margin-top: 0.5rem;
+        }
+
+        .site-footer p {
+            max-width: 600px;
+            margin: 0 auto;
+            font-size: 1rem;
+            color: #2b2b2b;
+        }
+
+        .site-footer .foot-note {
+            display: inline-block;
+            margin-top: 0.8rem;
+            font-size: 0.9rem;
+            color: #5a4a3a;
+            border-bottom: 1px solid #b8a690;
+            padding-bottom: 0.2rem;
+        }
+
+        /* 响应式细节 */
+        @media (max-width: 640px) {
+            .hero {
+                padding: 3.5rem 1rem 2.5rem;
+            }
+            .hero h1 {
+                font-size: 2rem;
+            }
+            .intro-card {
+                padding: 1.5rem 1.2rem;
+                border-radius: 20px;
+            }
+            .intro-card h2 {
+                font-size: 1.25rem;
+            }
+            .faq-snippet {
+                padding: 1.2rem 1.2rem;
+            }
+        }
+
+        @media (min-width: 768px) {
+            .intro-grid {
+                gap: 2.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 深色头图 -->
+    <section class="hero">
+        <h1>识别 · <strong>NG导航</strong></h1>
+        <div class="sub">
+            信息密度与方向感并存——一个帮你快速判断「这是什么地方」的导航站。
+        </div>
+        <div class="tagline">不是所有入口都值得停留，但值得的往往简洁</div>
+    </section>
+
+    <!-- 浅色正文三段自然介绍 -->
+    <div class="content-wrapper">
+        <div class="intro-grid">
+
+            <!-- 第一段：背景说明 + 自然引出 -->
+            <div class="intro-card">
+                <h2>第一印象：目录式结构</h2>
+                <p>
+                    打开 <a href="https://cnweb-ng.com" class="emphasis-link">NG导航</a>，你看到的是按主题梳理的链接集合，没有浮夸的弹窗，也没有复杂注册流程。它更像一本折角的杂志目录——每个分类下都有手工筛选过的中文资源，从技术文档到创意社区，从效率工具到开放数据。
+                </p>
+                <p>
+                    对于初次访问的人来说，快速确认网站的用途是最直接的诉求。NG导航 的首页把分类铺开，一目了然，你不用反复猜测「这到底是做什么的」。
+                </p>
+            </div>
+
+            <!-- 第二段：特点+使用场景 -->
+            <div class="intro-card">
+                <h2>适用场景与边界</h2>
+                <p>
+                    日常需要快速定位某个领域的优质站点时，NG导航 可以作为起点。它不求覆盖所有角落，但着重于精选与实用。以下是一些典型的使用时刻：
+                </p>
+                <ul class="scene-list">
+                    <li>想找设计素材或配色参考，但不想陷入搜索引擎的广告堆</li>
+                    <li>需要一个相对干净的技术文章聚合页，减少信息噪音</li>
+                    <li>偶尔发现新工具或社区，想看看同类中是否有更合适的替代</li>
+                </ul>
+                <p style="margin-top: 1rem;">
+                    当然，导航站的价值依赖于维护者的持续筛选。如果你发现自己常用的某个优质站点不在列表中，也可以在未来适当的时候留意更新。
+                </p>
+            </div>
+
+            <!-- 第三段：FAQ摘要 + 收录感 -->
+            <div class="intro-card">
+                <h2>关于收录与发现</h2>
+                <p>
+                    很多用户会好奇：一个网站是如何被选入 NG导航 的？其实标准并不复杂——站点本身要有明确的内容定位、稳定的可访问性，以及一定的中文友好度。不盲追流量，也不收录纯粹的商业聚合页。
+                </p>
+                <div class="faq-snippet">
+                    <p><span class="q">Q：</span><span class="a">我常用的一个工具站似乎不在列表里，是遗漏了吗？</span></p>
+                    <p><span class="q">A：</span><span class="a">大概率不是遗漏，而是目前收录倾向于「非重复性」与「长期维护」。如果你认为它确实独特，可以关注 NG导航 后续的补充说明。</span></p>
+                    <p style="margin-top: 0.4rem;"><span class="q">Q：</span><span class="a">NG导航 本身会收集我的浏览数据吗？</span></p>
+                    <p><span class="q">A：</span><span class="a">首页仅仅是导航链接，不设用户系统，也不嵌入第三方追踪脚本。你看见的，就是全部。</span></p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- 页尾访问提示 -->
+    <footer class="site-footer">
+        <p>
+            如果你想直接探索这个导航本身，地址栏输入 <span style="font-family: 'Courier New', monospace; background: #d9d0c2; padding: 0.1rem 0.4rem; border-radius: 6px;">cnweb-ng.com</span> 即可。
+        </p>
+        <span class="foot-note">NG导航 · 一个以目录感为核心的中文站点索引</span>
+    </footer>
+
+</body>
+</html>
