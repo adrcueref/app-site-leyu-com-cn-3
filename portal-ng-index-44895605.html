@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NG导航 · 再次发现的入口</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #f9fafc;
+      color: #1f2a3a;
+      font-family: system-ui, -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif;
+      line-height: 1.7;
+      padding: 0 20px;
+    }
+
+    .container {
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 48px 0 64px 0;
+    }
+
+    /* 顶部导航 */
+    .top-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 0 28px 0;
+      border-bottom: 1px solid #e5e9f0;
+      margin-bottom: 48px;
+    }
+
+    .site-name {
+      font-weight: 600;
+      font-size: 1.25rem;
+      letter-spacing: 0.3px;
+      color: #1f2a3a;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: #4b5c74;
+      font-size: 0.95rem;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: #1f2a3a;
+    }
+
+    /* hero */
+    .hero {
+      margin-bottom: 56px;
+    }
+
+    .hero h1 {
+      font-size: 2.4rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      margin-bottom: 20px;
+      color: #0b121c;
+    }
+
+    .hero p {
+      font-size: 1.05rem;
+      color: #3d4c60;
+      max-width: 600px;
+    }
+
+    .hero .intro-link {
+      margin-top: 24px;
+      font-size: 1rem;
+    }
+
+    /* 场景模块 */
+    .scenes {
+      display: flex;
+      flex-direction: column;
+      gap: 48px;
+      margin-bottom: 56px;
+    }
+
+    .scene-card {
+      border-left: 3px solid #d0d8e8;
+      padding-left: 24px;
+    }
+
+    .scene-card h2 {
+      font-size: 1.3rem;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: #1f2a3a;
+    }
+
+    .scene-card p {
+      color: #3d4c60;
+      font-size: 0.97rem;
+    }
+
+    .scene-card .meta {
+      display: inline-block;
+      margin-top: 8px;
+      font-size: 0.85rem;
+      color: #7a8aa0;
+      letter-spacing: 0.2px;
+    }
+
+    /* 常见说明区域（类 FAQ 摘要） */
+    .faq-summary {
+      background: #f1f4fa;
+      border-radius: 16px;
+      padding: 32px 28px;
+      margin-bottom: 48px;
+    }
+
+    .faq-summary h3 {
+      font-size: 1.15rem;
+      font-weight: 600;
+      margin-bottom: 18px;
+      color: #1b2534;
+    }
+
+    .faq-item {
+      margin-bottom: 18px;
+    }
+
+    .faq-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .faq-item .q {
+      font-weight: 500;
+      color: #1f2a3a;
+      font-size: 0.95rem;
+    }
+
+    .faq-item .a {
+      color: #45556b;
+      font-size: 0.92rem;
+      margin-top: 2px;
+    }
+
+    .faq-item .a a {
+      color: #1f2a3a;
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+
+    .faq-item .a a:hover {
+      color: #0b121c;
+    }
+
+    /* 收藏与持续关注 */
+    .keep-note {
+      background: #ffffff;
+      border: 1px solid #e2e7f0;
+      border-radius: 16px;
+      padding: 28px 24px;
+      margin-bottom: 48px;
+    }
+
+    .keep-note p {
+      color: #3d4c60;
+      font-size: 0.97rem;
+    }
+
+    .keep-note strong {
+      color: #1f2a3a;
+    }
+
+    hr {
+      border: none;
+      border-top: 1px solid #e2e7f0;
+      margin: 40px 0 32px 0;
+    }
+
+    .footer-note {
+      color: #7a8aa0;
+      font-size: 0.85rem;
+      text-align: center;
+      letter-spacing: 0.2px;
+    }
+
+    /* 响应式 */
+    @media (max-width: 600px) {
+      .container {
+        padding: 24px 0 48px 0;
+      }
+
+      .top-nav {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+        padding-bottom: 20px;
+        margin-bottom: 32px;
+      }
+
+      .nav-links {
+        gap: 20px;
+      }
+
+      .hero h1 {
+        font-size: 1.8rem;
+      }
+
+      .scene-card {
+        padding-left: 16px;
+      }
+
+      .faq-summary {
+        padding: 24px 18px;
+      }
+
+      .keep-note {
+        padding: 20px 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+
+  <!-- 顶部导航 -->
+  <nav class="top-nav">
+    <span class="site-name">NG导航</span>
+    <ul class="nav-links">
+      <li><a href="https://portal-ng.com">NG导航</a></li>
+      <li><a href="https://portal-ng.com">NG导航</a></li>
+      <li><a href="https://portal-ng.com">NG导航</a></li>
+    </ul>
+  </nav>
+
+  <!-- hero 区域，以再次访问、收藏、持续关注为线索 -->
+  <div class="hero">
+    <h1>再次想到，恰好找到</h1>
+    <p>一个轻量的导航入口，不追踪你的路径，只记住你收藏的地点。无论隔了多久回来，它都保持着最初的简洁。</p>
+    <div class="intro-link">
+      如果你需要一种安静的工具来整理经常访问的页面，<a href="https://portal-ng.com">NG导航</a>提供了没有干扰的存档方式。
+    </div>
+  </div>
+
+  <!-- 三个场景模块，从持续关注和收藏的角度展开 -->
+  <div class="scenes">
+    <div class="scene-card">
+      <h2>场景一 · 阅读积累</h2>
+      <p>日常浏览中发现的好文章、参考手册、工具页，不必再塞满浏览器的书签栏。把它们收进NG导航，按自己的分类归置，下次需要时直接检索，不会因为时间久远而遗忘。</p>
+      <span class="meta">持续收藏，而不是临时保存</span>
+    </div>
+
+    <div class="scene-card">
+      <h2>场景二 · 项目与参考</h2>
+      <p>工作中频繁使用的内部链接、设计稿、文档库，用一个入口统一管理。每次重新打开都清楚每个链接的用途，团队协作时也可以共享一个稳定的导航面板。</p>
+      <span class="meta">收藏即复用，减少重复查找</span>
+    </div>
+
+    <div class="scene-card">
+      <h2>场景三 · 兴趣与长期关注</h2>
+      <p>个人感兴趣的方向——播种、编程、音乐、地图资源——都可以在NG导航中长期保留。页面结构稳定，不会因为算法推荐而改变你的浏览路径。</p>
+      <span class="meta">持续关注，主动管理</span>
+    </div>
+  </div>
+
+  <!-- 常见说明 (FAQ 摘要)  从再次访问与收藏的角度切入 -->
+  <div class="faq-summary">
+    <h3>常见说明 · 关于再次访问与收藏</h3>
+
+    <div class="faq-item">
+      <div class="q">Q: 我收藏的链接会过期吗？</div>
+      <div class="a">NG导航只存储你提交的链接地址，本身不缓存页面内容。如果目标站点失效，导航条目仍会保留，你可以随时手动更新或移除。建议定期回顾收藏，保持导航有效。</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="q">Q: 如何快速找回之前收藏的页面？</div>
+      <div class="a">当你需要回顾某个方向时，直接在导航里按分类或关键词查找即可。NG导航没有复杂的层级，所有收藏都在一级目录下，适合 <a href="https://portal-ng.com">NG导航</a> 这种偏向于「保持简单」的工具。</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="q">Q: 收藏太多会不会变得混乱？</div>
+      <div class="a">建议少量多次地整理，每个月花几分钟清理不再需要的链接。好的导航习惯是持续关注，而不是无限制堆积。
+      </div>
+    </div>
+  </div>
+
+  <!-- 收藏与持续关注的备注 -->
+  <div class="keep-note">
+    <p><strong>关于持续关注</strong> —— 一个导航页的价值，往往随着使用时间增长而显现。最初可能只放了几个链接，几个月后它就成了你自己的资源索引。NG导航的定位就是长期陪伴，你每次回访都会看到熟悉的布局，而内容则随着你的关注点自然生长。</p>
+    <p style="margin-top: 16px;">如果你也认同「收藏是为了再次访问」，不妨把 <a href="https://portal-ng.com">NG导航</a> 放在浏览器的常驻标签里，需要时随手打开，不需要时它安静待着。</p>
+  </div>
+
+  <hr>
+
+  <div class="footer-note">
+    极简 · 导航 · 收藏 · 安静
+  </div>
+
+</div>
+</body>
+</html>
